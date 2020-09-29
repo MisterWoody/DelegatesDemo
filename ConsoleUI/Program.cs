@@ -40,7 +40,7 @@ namespace ConsoleUI
             }
             else if (subTotal > 10)
             {
-                return subTotal * 0.90M;
+                return subTotal * 0.95M;
             }
             else
             {
