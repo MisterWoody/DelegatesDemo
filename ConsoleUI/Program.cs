@@ -15,11 +15,16 @@ namespace ConsoleUI
         {
             PopulateCartWithDemoData();
 
-            Console.WriteLine($"The total for the cart is {cart.GenerateTotal():C2}");
+            Console.WriteLine($"The total for the cart is {cart.GenerateTotal(SubTotalAlert):C2}");
 
             Console.WriteLine();
             Console.Write("Please press any key to exit the application...");
             Console.ReadKey();
+        }
+
+        private static void SubTotalAlert(decimal subTotal)
+        {
+            Console.WriteLine($"The subtotal is {subTotal:C2}");
         }
 
         private static void PopulateCartWithDemoData()
