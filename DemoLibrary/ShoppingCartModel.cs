@@ -19,6 +19,9 @@ namespace DemoLibrary
             decimal subTotal = Items.Sum(x => x.Price);
 
             mentionDiscount(subTotal);
+            
+            // The following code is brittle and subject to frequent change potentially due ot hard coded values.
+            // Let's improve this with a delegate.
 
             if (subTotal  > 100)
             {
