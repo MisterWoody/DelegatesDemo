@@ -31,16 +31,35 @@ namespace WinFormUI
 
         private void messageBoxDemoButton_Click(object sender, EventArgs e)
         {
-            
+            decimal total = cart.GenerateTotal(SubTotalAlert, CalculateLeveledDiscount, PrintOutDiscountAlert);
+
+            MessageBox.Show($"The total is {total:C2}");
         }
 
-        private void PrintOutDiscountAlert(string discountMessage)
-        {
-            
-        }
 
         private void textBoxDemoButton_Click(object sender, EventArgs e)
         {
+            decimal total = cart.GenerateTotal((subTotal) => subTotalTextBox.Text = $"{subTotal:C2}",
+                (products, subTotal) => subTotal - (products.Count * 2),
+                (message) => { });
+
+            totalTextBox.Text = $"{total:C2}";
+        }
+
+        // The following shows the power of delegates as we can use this method in a winforms context rather than a console writeln which we use in a console app.
+        private void PrintOutDiscountAlert(string message)
+        {
+            MessageBox.Show(message);
+        }
+
+        private void SubTotalAlert(decimal subTotal)
+        {
+            MessageBox.Show($"The subtotal is {subTotal:C2}");
+        }
+
+        private decimal CalculateLeveledDiscount(List<ProductModel> products, decimal subTotal)
+        {
+            return subTotal - products.Count();
         }
     }
 }
