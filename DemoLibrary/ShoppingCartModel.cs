@@ -24,6 +24,10 @@ namespace DemoLibrary
 
             tellUserWeAreDiscounting("We are applying your discount");
 
+            // Note - the following method call returns a decimal which is in turn returned by this statement.
+            // It would be possible to capture the value returned and then return that (introducing an intermediate variable
+            // but this is un-necessary here in this case
+
             return calculateDiscountedTotal(Items, subTotal);
         }
     }
